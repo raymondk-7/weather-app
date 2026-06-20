@@ -10,13 +10,15 @@ const App = () => {
   // State created at root
   const [weatherData, setWeatherData] = useState(null);
 
+
+  // REMOVE THE IMAGE !!!
   // 2. Look up the background image based on the top-level state
-  const currentBgImage = weatherData ? (allBackgrounds[weatherData.current.condition.code] || clear_bg) : clear_bg;
+  const currentBgImage = weatherData ? (allBackgrounds[weatherData.current.condition.code] || 'linear-gradient(to bottom, #4ea8de, #56cfe1)') : 'linear-gradient(to bottom, #4ea8de, #56cfe1)';
 
   return (
     <div className='app'
     style={{ 
-        backgroundImage: `url(${currentBgImage})`,
+        background: currentBgImage,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         minHeight: '100vh',

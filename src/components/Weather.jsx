@@ -32,7 +32,7 @@ const Weather = ({ weatherData, setWeatherData }) => {
     // 🛠️ TEMPORARY MOCK DATA TO AVOID ADDITIONAL API CALLS
     const mockData = {
       location: { name: "London" },
-      current: { temp_c: 16, humidity: 85, wind_kph: 12, condition: { icon: "//cdn.weatherapi.com/weather/64x64/day/116.png"} }
+      current: { temp_c: 16, humidity: 85, wind_kph: 12, condition: { icon: "//cdn.weatherapi.com/weather/64x64/day/116.png", code: 1180} }
     };
     setWeatherData(mockData);
     return;
