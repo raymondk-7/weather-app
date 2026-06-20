@@ -5,7 +5,12 @@ import rain_icon from '../assets/rain.png'
 import snow_icon from '../assets/snow.png'
 
 
-// POJO to reference icons in library
+// POJO to reference icons in library. Numbers are assigned by WeatherAPI.com to diferrent conditions, which are represented 
+// by the given .pngs
+
+
+// After a search, the API returns a large JSON object holding a condition code, which is saved into weatherData.
+// The component uses the returned code to look up the correct icon to return from the POJO. 
 
 const allIcons = {
   // Clear / Sunny

@@ -8,11 +8,10 @@ import humidity_icon from '../assets/humidity.png'
 import allIcons from './weatherIcons.js'
 import clear_icon from '../assets/clear.png'
 
-const Weather = () => {
+const Weather = ({ weatherData, setWeatherData }) => {
 
   
   const [city, setCity] = useState('');
-  const [weatherData, setWeatherData] = useState(null);
 
   useEffect(() => {
     // We pass a direct string to search() or set standard state
@@ -33,10 +32,11 @@ const Weather = () => {
     // 🛠️ TEMPORARY MOCK DATA TO AVOID ADDITIONAL API CALLS
     const mockData = {
       location: { name: "London" },
-      current: { temp_c: 16, humidity: 85, wind_kph: 12, condition: { icon: "//cdn.weatherapi.com/weather/64x64/day/116.png" } }
+      current: { temp_c: 16, humidity: 85, wind_kph: 12, condition: { icon: "//cdn.weatherapi.com/weather/64x64/day/116.png"} }
     };
     setWeatherData(mockData);
     return;
+  
 
     /*
     try {
