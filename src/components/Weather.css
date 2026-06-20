@@ -1,9 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
 .weather {
+    font-family: Quicksand;
     place-self: center;
     padding: 2rem;
     padding-bottom: 0;
     border-radius: 0.6rem;
-    background-image: linear-gradient(135deg, #2af1ff, #557acd);
+    background: #242424;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -14,10 +17,13 @@
     display: flex;
     align-items: center;
     gap: 1rem;
+    width: 100%;
 }
+
 
 .search-bar input {
     height: 2.5rem;
+    width: inherit;
     border: none;
     outline: none;
     border-radius: 0.8rem;
@@ -34,23 +40,27 @@
     cursor: pointer;
 }
 
+
+/* Weather icon, temperature and location */
+
 .weather-icon {
-    width: 150px;
-    margin: 30px 0;
+    width: 12em;
+    margin-top: 1em;
 }
 
 .temperature {
     color: #ffffff;
-    font-size: 80px;
+    font-size: 6em;
     line-height: 1;
 }
 
 .location {
     color: #ffffff;
-    font-size: 40px;
+    font-size: 2.5em;
+    align-self: center;
 }
 
-/* BOTTOM ROWS */
+/* BOTTOM ROW */
 
 .weather-data {
     width: 100%;
@@ -58,12 +68,13 @@
     color: #ffffff;
     display: flex;
     justify-content: space-between;
+    overflow: hidden;
 }
 
 .weather-data .col {
     display: flex;
-    align-items: flex=start;
-    gap: 12px;
+    align-items: flex-start;
+    gap: 0.5em;
     font-size: 22px;
 }
 
@@ -73,9 +84,16 @@
 }
 
 .weather-data .col img {
-    width: 26px;
+    width: 2.5em;
 }
 
+/* WeatherAPI.com Link */
 .weather .link-back {
     margin-block: 1em;
+    color: white;
+}
+
+.weather .link-back a {
+    text-decoration: none;
+    color: white;
 }

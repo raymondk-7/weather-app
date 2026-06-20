@@ -31,8 +31,8 @@ const Weather = ({ weatherData, setWeatherData }) => {
 
     // 🛠️ TEMPORARY MOCK DATA TO AVOID ADDITIONAL API CALLS
     const mockData = {
-      location: { name: "London" },
-      current: { temp_c: 16, humidity: 85, wind_kph: 12, condition: { icon: "//cdn.weatherapi.com/weather/64x64/day/116.png", code: 1180} }
+      location: { name: "London"},
+      current: { temp_c: 16, humidity: 85, wind_kph: 12, condition: { icon: "//cdn.weatherapi.com/weather/64x64/day/116.png", code: 1000} }
     };
     setWeatherData(mockData);
     return;
@@ -61,7 +61,7 @@ const Weather = ({ weatherData, setWeatherData }) => {
 
 
   return (
-    <div className='weather'>
+    <main className='weather'>
         <div className='search-bar'>
             <input 
               type='text' 
@@ -103,7 +103,7 @@ const Weather = ({ weatherData, setWeatherData }) => {
 
         {/* link-back has no css selector */}
         <footer className='link-back'>Powered by <a href="https://www.weatherapi.com/" title="Free Weather API">WeatherAPI.com</a></footer>
-    </div>
+    </main>
   ) // end of returned api data
 } // end of const Weather
 
