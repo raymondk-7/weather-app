@@ -43,21 +43,59 @@
 
 /* Weather icon, temperature and location */
 
-.weather-icon {
-    width: 12em;
-    margin-top: 1em;
+.weather-main {
+    width: 100%;
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+    padding: 1rem 0;
+}
+
+.left-header {
+    display: flex;
+    align-items: center; 
+    gap: 1rem;           
+}
+
+.left-header .temp-location {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .temperature {
-    color: #ffffff;
-    font-size: 6em;
-    line-height: 1;
+    font-size: 2.5em;
 }
 
-.location {
-    color: #ffffff;
-    font-size: 2.5em;
-    align-self: center;
+.weather-icon {
+    width: 12em;
+}
+
+.location, .feelsLike {
+    font-size: 2em;
+}
+
+.feelsLike-icon {
+    width: 6em;
+    margin: 2em;
+}
+
+.feelsLike-temp {
+    font-size: 3em;
+}
+
+.right-header {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    gap: 1rem;
+}
+
+.right-header .feelsLikeWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
 /* BOTTOM ROW */

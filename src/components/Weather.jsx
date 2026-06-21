@@ -4,6 +4,8 @@ import './Weather.css'
 import search_icon from '../assets/search.png'
 import wind_icon from '../assets/wind.png'
 import humidity_icon from '../assets/humidity.png'
+import uv_index from '../assets/uvindex.svg'
+import feels_like from '../assets/feelslike.svg'
 
 import allIcons from './weatherIcons.js'
 import clear_icon from '../assets/clear.png'
@@ -32,7 +34,7 @@ const Weather = ({ weatherData, setWeatherData }) => {
     // 🛠️ TEMPORARY MOCK DATA TO AVOID ADDITIONAL API CALLS
     const mockData = {
       location: { name: "London"},
-      current: { temp_c: 16, humidity: 85, wind_kph: 12, condition: { icon: "//cdn.weatherapi.com/weather/64x64/day/116.png", code: 1000} }
+      current: { temp_c: 16, feelslike_c: 18, humidity: 85, wind_kph: 12, uv: 2, condition: { icon: "//cdn.weatherapi.com/weather/64x64/day/116.png", code: 1000} }
     };
     setWeatherData(mockData);
     return;
@@ -75,11 +77,36 @@ const Weather = ({ weatherData, setWeatherData }) => {
 
         {weatherData ? (
         <>
-          <img src={allIcons[weatherData.current.condition.code] || clear_icon} alt='weather condition' className='weather-icon'/>
-          <p className='temperature'>{Math.floor(weatherData.current.temp_c)}°C</p>
-          <p className='location'>{weatherData.location.name}</p>
+          <div className='weather-main'>
+
+            <div className='left-header'>
+              <img src={allIcons[weatherData.current.condition.code] || clear_icon} 
+                alt='weather condition' 
+                className='weather-icon'
+              />
+              <div className='temp-location'>
+                <p className='temperature'>{Math.floor(weatherData.current.temp_c)}°C</p>
+                <p className='location'>{weatherData.location.name}</p>
+              </div>
+            </div>
+
+            <div className='right-header'>
+
+              <img src={feels_like} 
+                alt='Feels like'
+                className='feelsLike-icon'
+              />
+              
+              <div className="feelsLikeWrapper">
+                <p className='feelsLike'>Feels like</p>
+                <p className='feelsLike-temp'>{Math.floor(weatherData.current.feelslike_c)}°C</p>
+              </div>
+            </div>
+
+          </div>
 
           <div className='weather-data'>
+
             <div className="col">
               <img src={humidity_icon} alt="" />
               <div>
@@ -87,6 +114,15 @@ const Weather = ({ weatherData, setWeatherData }) => {
                 <span>Humidity</span>
               </div>
             </div>
+
+            <div className="col">
+              <img src={uv_index} alt="" />
+              <div>
+                <p>{weatherData.current.uv}</p>
+                <span>UV Index</span>
+              </div>
+            </div>
+
             <div className="col">
               <img src={wind_icon} alt="" />
               <div>
@@ -94,6 +130,7 @@ const Weather = ({ weatherData, setWeatherData }) => {
                 <span>Wind Speed</span>
               </div>
             </div>
+
           </div>
         </>
       ) : (
