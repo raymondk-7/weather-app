@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
 
+
 .weather {
     font-family: Quicksand;
     place-self: center;
@@ -10,7 +11,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 55%;
+    width: 75%;
 }
 
 .search-bar {
@@ -40,6 +41,28 @@
     cursor: pointer;
 }
 
+/* Day of the week and condition state */
+
+.overview {
+    margin-top: 1rem;
+    gap: 0.25em;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.weekday {
+    font-size: 3em;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.condition-text {
+    font-size: 2em;
+}
+
 
 /* Weather icon, temperature and location */
 
@@ -47,7 +70,7 @@
     width: 100%;
     color: #ffffff;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     overflow: hidden;
     padding: 1rem 0;
 }
@@ -62,10 +85,14 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    word-break: break-word; /* Allows long strings without spaces to break cleanly */
+    white-space: normal;
+    max-width: 50%; /* prevents overflow into the next header */
 }
 
-.temperature {
-    font-size: 2.5em;
+.temperature, .feelsLike-temp {
+    font-size: 4em;
+    font-weight: 500;
 }
 
 .weather-icon {
@@ -81,9 +108,6 @@
     margin: 2em;
 }
 
-.feelsLike-temp {
-    font-size: 3em;
-}
 
 .right-header {
     display: flex;
@@ -96,6 +120,9 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    word-break: break-word; /* Allows long strings without spaces to break cleanly */
+    white-space: normal;
+    max-width: 50%; /* prevents overflow into the next header */
 }
 
 /* BOTTOM ROW */

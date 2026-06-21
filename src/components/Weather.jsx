@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import './reset.css'
 import './Weather.css'
+
 import search_icon from '../assets/search.png'
 import wind_icon from '../assets/wind.png'
 import humidity_icon from '../assets/humidity.png'
+
+// Icons from SVGRepo 
+
 import uv_index from '../assets/uvindex.svg'
 import feels_like from '../assets/feelslike.svg'
+import rain_fall from '../assets/rainfall.svg'
 
 import allIcons from './weatherIcons.js'
 import clear_icon from '../assets/clear.png'
@@ -20,6 +25,13 @@ const Weather = ({ weatherData, setWeatherData }) => {
     search("London"); 
   }, []);
 
+  // Setting the weekday...
+  const getDayOfWeek = () => {
+    if (!weatherData || !weatherData.location) return "";
+    const dateOnly = weatherData.location.localtime.split(" ")[0];
+    const date = new Date(dateOnly);
+    return date.toLocaleDateString('en-US', { weekday: 'long' });
+  };
   
 
   
@@ -33,8 +45,8 @@ const Weather = ({ weatherData, setWeatherData }) => {
 
     // 🛠️ TEMPORARY MOCK DATA TO AVOID ADDITIONAL API CALLS
     const mockData = {
-      location: { name: "London"},
-      current: { temp_c: 16, feelslike_c: 18, humidity: 85, wind_kph: 12, uv: 2, condition: { icon: "//cdn.weatherapi.com/weather/64x64/day/116.png", code: 1000} }
+      location: { name: "London", localtime: "2026-06-21 21:30"},
+      current: { temp_c: 16, feelslike_c: 18, humidity: 85, wind_kph: 12, uv: 2, precip_mm: 0.4, condition: { text: "cloudy", icon: "//cdn.weatherapi.com/weather/64x64/day/116.png", code: 1000} }
     };
     setWeatherData(mockData);
     return;
@@ -61,6 +73,7 @@ const Weather = ({ weatherData, setWeatherData }) => {
   }
   
 
+  
 
   return (
     <main className='weather'>
@@ -77,6 +90,12 @@ const Weather = ({ weatherData, setWeatherData }) => {
 
         {weatherData ? (
         <>
+
+          <div className='overview'>
+            <p className='weekday'>{getDayOfWeek()}</p>
+            <p className='condition-text'>{weatherData.current.condition.text}</p>
+          </div>
+
           <div className='weather-main'>
 
             <div className='left-header'>
@@ -96,7 +115,7 @@ const Weather = ({ weatherData, setWeatherData }) => {
                 alt='Feels like'
                 className='feelsLike-icon'
               />
-              
+
               <div className="feelsLikeWrapper">
                 <p className='feelsLike'>Feels like</p>
                 <p className='feelsLike-temp'>{Math.floor(weatherData.current.feelslike_c)}°C</p>
@@ -130,6 +149,14 @@ const Weather = ({ weatherData, setWeatherData }) => {
                 <span>Wind Speed</span>
               </div>
             </div>
+
+            <div className="col">
+              <img src={rain_fall} alt="" />
+              <div>
+                <p>{weatherData.current.precip_mm} mm</p>
+                <span>Rainfall</span>
+              </div>
+            </div>  
 
           </div>
         </>
