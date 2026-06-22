@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import Weather from './components/Weather'
+import Forecast from './components/Forecast'
 import allBackgrounds from './components/WeatherBackgrounds'
+import allIcons from './components/WeatherIcons'
+import clear_icon from './assets/clear.png'
 import clear_bg from './backgrounds/bg-clear.jpg'
 
 /* need to import google fonts in the .css file */
@@ -24,7 +27,19 @@ const App = () => {
         minHeight: '100vh',
         transition: 'background-image 0.5s ease-in-out' // Makes background swaps smooth!
       }}>
+
+      {/* Weather: Shows the weather data from the selected day. */}
       <Weather weatherData={weatherData} setWeatherData={setWeatherData}/>
+
+      {/* Forecast: Shows the weather forecast for the next 7 days. */}
+      <Forecast 
+                  weatherData={weatherData} 
+                  allIcons={allIcons} 
+                  clear_icon={clear_icon} 
+      />
+
+
+
     </div>
   )
 }

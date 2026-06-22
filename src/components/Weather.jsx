@@ -14,6 +14,7 @@ import rain_fall from '../assets/rainfall.svg'
 
 import allIcons from './weatherIcons.js'
 import clear_icon from '../assets/clear.png'
+import Forecast from './Forecast.jsx';
 
 const Weather = ({ weatherData, setWeatherData }) => {
 
@@ -45,9 +46,23 @@ const Weather = ({ weatherData, setWeatherData }) => {
 
     // 🛠️ TEMPORARY MOCK DATA TO AVOID ADDITIONAL API CALLS
     const mockData = {
-      location: { name: "London", localtime: "2026-06-21 21:30"},
-      current: { temp_c: 16, feelslike_c: 18, humidity: 85, wind_kph: 12, uv: 2, precip_mm: 0.4, condition: { text: "cloudy", icon: "//cdn.weatherapi.com/weather/64x64/day/116.png", code: 1000} }
+      location: { name: "London", localtime: "2026-06-22 21:30"},
+      current: { temp_c: 16, feelslike_c: 18, humidity: 85, wind_kph: 12, uv: 2, precip_mm: 0.4, condition: { text: "cloudy", icon: "//cdn.weatherapi.com/weather/64x64/day/116.png", code: 1000} },
+      
+      forecast: {
+        forecastday: [
+          { date: "2026-06-22", day: { maxtemp_c: 18, mintemp_c: 12, condition: { code: 1000 } } }, // Mon
+          { date: "2026-06-23", day: { maxtemp_c: 21, mintemp_c: 14, condition: { code: 1000 } } }, // Tue
+          { date: "2026-06-24", day: { maxtemp_c: 19, mintemp_c: 11, condition: { code: 1003 } } }, // Wed
+          { date: "2026-06-25", day: { maxtemp_c: 15, mintemp_c: 9,  condition: { code: 1006 } } }, // Thu
+          { date: "2026-06-26", day: { maxtemp_c: 16, mintemp_c: 10, condition: { code: 1009 } } }, // Fri
+          { date: "2026-06-27", day: { maxtemp_c: 22, mintemp_c: 15, condition: { code: 1000 } } }, // Sat
+          { date: "2026-06-28", day: { maxtemp_c: 24, mintemp_c: 16, condition: { code: 1000 } } }  // Sun
+        ]
+      }
     };
+
+    
     setWeatherData(mockData);
     return;
   
@@ -159,15 +174,19 @@ const Weather = ({ weatherData, setWeatherData }) => {
             </div>  
 
           </div>
+
         </>
       ) : (
         /* This renders safely on initial load while weatherData is still null */
         <p className="search-prompt">Search for a city to see the weather!</p>
       )}
 
+        
+
         {/* link-back has no css selector */}
         <footer className='link-back'>Powered by <a href="https://www.weatherapi.com/" title="Free Weather API">WeatherAPI.com</a></footer>
     </main>
+    
   ) // end of returned api data
 } // end of const Weather
 

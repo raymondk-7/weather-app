@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
+
+/* Full wrapper */
+.forecast-carousel-wrapper {
+    font-family: Quicksand;
+    margin-block: 3rem;
+    display: flex;
+    justify-self: center;
+    width: 95%;
+    background: #242424;
+
+    max-width: 1016px;
+    margin: 2rem 0 auto;
+    border-radius: 0.6rem;
+}
+
+/* Carousel window */
+
+.carousel-window {
+    overflow-x: auto;
+    scroll-behavior: smooth;
+
+    -ms-overflow-style: none; /* For IE/MS Edge */
+    scrollbar-width: none; /* For Firefox */
+    display: flex;
+
+    width: 100%;
+    max-width: 100%;
+    color: white;
+}
+
+.carousel-window::-webkit-scrollbar {
+    display: none;             /* Chrome, Safari, and Opera */
+}
+
+.carousel-track {
+    display: flex;
+    flex-direction: row;
+}
+
+
+/* For carousel cards */
+
+.forecast-card {
+    flex: 0 0 100px;
+    margin: 1rem;
+}
+
+.card-day {
+    font-size: 1.5em;
+}
+
+.forecast-card img {
+    width: 12rem;
+}
+
+.max-temp, .min-temp {
+    margin-inline: 0.5rem;
+    font-size: 1.2em;
+}
+
+.max-temp {
+    color: #ffd900;
+}
