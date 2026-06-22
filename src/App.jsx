@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
+import './App.css';
+
 import Weather from './components/Weather'
 import Forecast from './components/Forecast'
+
 import allBackgrounds from './components/WeatherBackgrounds'
 import allIcons from './components/WeatherIcons'
 import clear_icon from './assets/clear.png'
@@ -38,7 +41,7 @@ const App = () => {
                   clear_icon={clear_icon} 
       />
 
-
+      <footer className='appfooter'>© Raymond Kabutey 2026. All rights reserved.</footer>
 
     </div>
   )

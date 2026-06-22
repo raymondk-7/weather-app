@@ -111,7 +111,7 @@ const Weather = ({ weatherData, setWeatherData }) => {
 
           <div className='overview'>
             <p className='weekday'>{getDayOfWeek()}</p>
-            <p className='condition-text'>{weatherData.current.condition.text}</p>
+            <p className='location'>{weatherData.location.name}</p>
           </div>
 
           <div className='weather-main'>
@@ -121,9 +121,9 @@ const Weather = ({ weatherData, setWeatherData }) => {
                 alt='weather condition' 
                 className='weather-icon'
               />
-              <div className='temp-location'>
+              <div className='temp-condition'>
                 <p className='temperature'>{Math.floor(weatherData.current.temp_c)}°C</p>
-                <p className='location'>{weatherData.location.name}</p>
+                <p className='condition-text'>{weatherData.current.condition.text}</p>
               </div>
             </div>
 

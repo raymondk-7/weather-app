@@ -62,12 +62,12 @@
     color: #ffffff;
 }
 
-.condition-text {
+.location {
     font-size: 2em;
 }
 
 
-/* Weather icon, temperature and location */
+/* Weather icon, temperature and condition-text */
 
 
 @keyframes fadeInOpacity {
@@ -103,7 +103,7 @@
     gap: 1rem;           
 }
 
-.left-header .temp-location {
+.left-header .temp-condition {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -121,7 +121,7 @@
     width: 12em;
 }
 
-.location, .feelsLike {
+.condition-text, .feelsLike {
     font-size: 2em;
 }
 
