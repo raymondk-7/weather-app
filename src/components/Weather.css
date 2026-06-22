@@ -66,6 +66,19 @@
 
 /* Weather icon, temperature and location */
 
+
+@keyframes fadeInOpacity {
+	0% {
+		opacity: 0;
+        transform: translateY(25px);
+	}
+	100% {
+		opacity: 1;
+        transform: translateY(0px);
+	}
+}
+
+
 .weather-main {
     width: 100%;
     color: #ffffff;
@@ -73,6 +86,12 @@
     justify-content: space-around;
     overflow: hidden;
     padding: 1rem 0;
+
+    opacity: 1;
+	animation-name: fadeInOpacity;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-out both;
+	animation-duration: 1s;
 }
 
 .left-header {
