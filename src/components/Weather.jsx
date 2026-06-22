@@ -57,7 +57,10 @@ const Weather = ({ weatherData, setWeatherData }) => {
           { date: "2026-06-25", day: { maxtemp_c: 15, mintemp_c: 9,  condition: { code: 1006 } } }, // Thu
           { date: "2026-06-26", day: { maxtemp_c: 16, mintemp_c: 10, condition: { code: 1009 } } }, // Fri
           { date: "2026-06-27", day: { maxtemp_c: 22, mintemp_c: 15, condition: { code: 1000 } } }, // Sat
-          { date: "2026-06-28", day: { maxtemp_c: 24, mintemp_c: 16, condition: { code: 1000 } } }  // Sun
+          { date: "2026-06-28", day: { maxtemp_c: 24, mintemp_c: 16, condition: { code: 1000 } } },  // Sun
+          { date: "2026-06-29", day: { maxtemp_c: 16, mintemp_c: 10, condition: { code: 1009 } } }, // Mon
+          { date: "2026-06-30", day: { maxtemp_c: 22, mintemp_c: 15, condition: { code: 1000 } } }, // Tue
+          { date: "2026-07-01", day: { maxtemp_c: 24, mintemp_c: 16, condition: { code: 1000 } } }  // Weds
         ]
       }
     };

@@ -33,13 +33,29 @@ const Forecast = ({ weatherData, allIcons, clear_icon }) => {
       windowRef.current.style.cursor = 'grab';
     }
   };
+
+  // Handles how the carousel moves during mouse dragging
+  const handleMouseMove = (e) => {
+    if (!isDown) return; // Exit if user isn't holding click
+    e.preventDefault();  // Stop browser text selection highlights while dragging
+    
+    const x = e.pageX - windowRef.current.offsetLeft;
+    const walk = (x - startX) * 1.5; // Multiply by 1.5 to adjust drag speed sensitivity
+    windowRef.current.scrollLeft = scrollLeft - walk;
+  };
   
 
 return (
     <>
-        <div className='forecast-carousel-wrapper'>
-        
-        <div className='carousel-window'>
+        <div className='forecast-carousel-wrapper'>  
+        <div className='carousel-window'
+            ref={windowRef}
+            onMouseDown={handleMouseDown}
+            onMouseLeave={handleMouseUpOrLeave}
+            onMouseUp={handleMouseUpOrLeave}
+            onMouseMove={handleMouseMove}
+            style={{ cursor: 'grab' }}
+        >
             <div className='carousel-track'>
             {weatherData.forecast.forecastday.map((dayItem, index) => (
                 
@@ -51,6 +67,7 @@ return (
                     src={allIcons[dayItem.day.condition.code] || clear_icon} 
                     alt='condition' 
                     className='card-icon' 
+                    draggable="false"
                 />
                 <div className='card-temps'>
                     <span className='max-temp'>{Math.floor(dayItem.day.maxtemp_c)}°</span>

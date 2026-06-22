@@ -23,6 +23,12 @@
 
     -ms-overflow-style: none; /* For IE/MS Edge */
     scrollbar-width: none; /* For Firefox */
+
+    user-select: none;         /* Standard syntax */
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none;    /* Firefox */
+    -ms-user-select: none;     /* IE/Edge */
+    
     display: flex;
 
     width: 100%;
