@@ -11,8 +11,17 @@
     background: #242424;
 
     max-width: 1016px;
-    margin: 2rem 0 auto;
+    margin: 1rem 0 auto;
     border-radius: 0.6rem;
+}
+
+.forecast-title {
+    font-family: Quicksand;
+    justify-self: center;
+    background-color: #303030;
+    color: white;
+    padding: 0.5em;
+    border-radius: 0.3em;
 }
 
 /* Carousel window */

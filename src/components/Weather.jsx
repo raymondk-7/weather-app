@@ -94,7 +94,7 @@ const Weather = ({ weatherData, setWeatherData }) => {
   
 
   return (
-    <main className='weather'>
+    <section className='weather'>
         <div className='search-bar'>
             <input 
               type='text' 
@@ -188,7 +188,7 @@ const Weather = ({ weatherData, setWeatherData }) => {
 
         {/* link-back has no css selector */}
         <footer className='link-back'>Powered by <a href="https://www.weatherapi.com/" title="Free Weather API">WeatherAPI.com</a></footer>
-    </main>
+    </section>
     
   ) // end of returned api data
 } // end of const Weather

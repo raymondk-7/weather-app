@@ -22,7 +22,7 @@ const App = () => {
   const currentBgImage = weatherData ? (allBackgrounds[weatherData.current.condition.code] || 'linear-gradient(to bottom, #4ea8de, #56cfe1)') : 'linear-gradient(to bottom, #4ea8de, #56cfe1)';
 
   return (
-    <div className='app'
+    <main className='app'
     style={{ 
         background: currentBgImage,
         backgroundSize: 'cover',
@@ -32,8 +32,10 @@ const App = () => {
       }}>
 
       {/* Weather: Shows the weather data from the selected day. */}
-      <Weather weatherData={weatherData} setWeatherData={setWeatherData}/>
-
+      <Weather 
+        weatherData={weatherData} 
+        setWeatherData={setWeatherData}
+      />
       {/* Forecast: Shows the weather forecast for the next 7 days. */}
       <Forecast 
                   weatherData={weatherData} 
@@ -43,7 +45,7 @@ const App = () => {
 
       <footer className='appfooter'>© Raymond Kabutey 2026. All rights reserved.</footer>
 
-    </div>
+    </main>
   )
 }
 

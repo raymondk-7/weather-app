@@ -47,39 +47,40 @@ const Forecast = ({ weatherData, allIcons, clear_icon }) => {
 
 return (
     <>
-        <div className='forecast-carousel-wrapper'>  
-        <div className='carousel-window'
-            ref={windowRef}
-            onMouseDown={handleMouseDown}
-            onMouseLeave={handleMouseUpOrLeave}
-            onMouseUp={handleMouseUpOrLeave}
-            onMouseMove={handleMouseMove}
-            style={{ cursor: 'grab' }}
-        >
-            <div className='carousel-track'>
-            {weatherData.forecast.forecastday.map((dayItem, index) => (
-                
-                <div key={dayItem.date} className='forecast-card'>
-                <p className='card-day'>
-                    {index === 0 ? 'Today' : new Date(dayItem.date).toLocaleDateString('en-US', { weekday: 'short' })}
-                </p>
-                <img 
-                    src={allIcons[dayItem.day.condition.code] || clear_icon} 
-                    alt='condition' 
-                    className='card-icon' 
-                    draggable="false"
-                />
-                <div className='card-temps'>
-                    <span className='max-temp'>{Math.floor(dayItem.day.maxtemp_c)}°</span>
-                    <span className='min-temp'>{Math.floor(dayItem.day.mintemp_c)}°</span>
-                </div>
-                </div>
+        <h2 class='forecast-title'>10-Day Forecast</h2>
+        <article className='forecast-carousel-wrapper'>  
+          <div className='carousel-window'
+              ref={windowRef}
+              onMouseDown={handleMouseDown}
+              onMouseLeave={handleMouseUpOrLeave}
+              onMouseUp={handleMouseUpOrLeave}
+              onMouseMove={handleMouseMove}
+              style={{ cursor: 'grab' }}
+          >
+              <div className='carousel-track'>
+              {weatherData.forecast.forecastday.map((dayItem, index) => (
+                  
+                  <div key={dayItem.date} className='forecast-card'>
+                  <p className='card-day'>
+                      {index === 0 ? 'Today' : new Date(dayItem.date).toLocaleDateString('en-US', { weekday: 'short' })}
+                  </p>
+                  <img 
+                      src={allIcons[dayItem.day.condition.code] || clear_icon} 
+                      alt='condition' 
+                      className='card-icon' 
+                      draggable="false"
+                  />
+                  <div className='card-temps'>
+                      <span className='max-temp'>{Math.floor(dayItem.day.maxtemp_c)}°</span>
+                      <span className='min-temp'>{Math.floor(dayItem.day.mintemp_c)}°</span>
+                  </div>
+                  </div>
 
-            ))}
-            </div>
-        </div>
+              ))}
+              </div>
+          </div>
 
-        </div>
+        </article>
     </>
   );
 };
