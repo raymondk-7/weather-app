@@ -9,7 +9,7 @@
     padding-bottom: 0;
     border-radius: 0.6rem;
 
-    background: #242424;
+    background: #242424C0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -17,11 +17,26 @@
     width: 90%;
 }
 
+/* Search bar container */
+
+.search-container {
+    width: 100%;
+    position: relative;
+}
+
+/* Search bar */
 .search-bar {
     display: flex;
     align-items: center;
     gap: 1rem;
     width: 100%;
+}
+
+.search-prompt {
+    margin: 1em;
+    color: white;
+    font-weight: 600;
+    font-size: 2em;
 }
 
 
@@ -42,6 +57,31 @@
     border-radius: 50%;
     background: #ebfffc;
     cursor: pointer;
+}
+
+/* Search suggestion list */
+
+.suggestions-list {
+    position: relative;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #242424;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5rem;
+    margin-top: 0.5rem;
+    padding: 0;
+    list-style: none;
+    z-index: 9999;
+}
+.suggestions-list li {
+    padding: 0.75rem 1rem;
+    color: white;
+    cursor: pointer;
+    text-align: left;
+}
+.suggestions-list li:hover {
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 /* Day of the week and condition state */
@@ -142,7 +182,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    word-break: break-word; /* Allows long strings without spaces to break cleanly */
+    word-break: break-word; /* Allows long strings without spaces to break */
     white-space: normal;
     max-width: 50%; /* prevents overflow into the next header */
 }

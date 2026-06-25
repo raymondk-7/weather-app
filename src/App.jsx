@@ -17,8 +17,7 @@ const App = () => {
   const [weatherData, setWeatherData] = useState(null);
 
 
-  // REMOVE THE IMAGE !!!
-  // 2. Look up the background image based on the top-level state
+  // Looks up the background image based on the top-level state
   const currentBgImage = weatherData ? (allBackgrounds[weatherData.current.condition.code] || 'linear-gradient(to bottom, #4ea8de, #56cfe1)') : 'linear-gradient(to bottom, #4ea8de, #56cfe1)';
 
   return (
@@ -28,19 +27,21 @@ const App = () => {
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         minHeight: '100vh',
-        transition: 'background-image 0.5s ease-in-out' // Makes background swaps smooth!
+        transition: 'background-image 0.5s ease-in-out' // Makes background swaps smooth
       }}>
 
-      {/* Weather: Shows the weather data from the selected day. */}
+      <nav className='navcontainer'>
+        <header><a href='#'>Weather and Forecast</a></header>
+        <ul>
+          <li><a href='#'>Weather</a></li>
+          <li><a href='#weather-forecast'>Forecast</a></li>
+        </ul>
+      </nav>
+
+      {/* Weather: Shows the weather data from the selected day. (Contains Forecast)*/}
       <Weather 
         weatherData={weatherData} 
         setWeatherData={setWeatherData}
-      />
-      {/* Forecast: Shows the weather forecast for the next 7 days. */}
-      <Forecast 
-                  weatherData={weatherData} 
-                  allIcons={allIcons} 
-                  clear_icon={clear_icon} 
       />
 
       <footer className='appfooter'>© Raymond Kabutey 2026. All rights reserved.</footer>

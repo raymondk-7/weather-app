@@ -20,11 +20,33 @@ const Weather = ({ weatherData, setWeatherData }) => {
 
   
   const [city, setCity] = useState('');
+  const [suggestions, setSuggestions] = useState([]); // Stores autocomplete matches
 
   useEffect(() => {
-    // We pass a direct string to search() or set standard state
-    search("London"); 
-  }, []);
+    const fetchSuggestions = async () => {
+      if (city.trim().length < 2) {
+        setSuggestions([]);
+        return;
+      }
+      try {
+        const url = `https://api.weatherapi.com/v1/search.json?key=${import.meta.env.VITE_APP_ID}&q=${city}`;
+        const response = await fetch(url);
+        if (response.ok) {
+          const data = await response.json();
+          setSuggestions(data);
+        }
+      } catch (error) {
+        console.error("Autocomplete error:", error);
+      }
+    };
+
+    const delayDebounce = setTimeout(() => {
+      fetchSuggestions();
+    }, 300);
+
+    return () => clearTimeout(delayDebounce);
+  }, [city]);
+  
 
   // Setting the weekday...
   const getDayOfWeek = () => {
@@ -44,7 +66,7 @@ const Weather = ({ weatherData, setWeatherData }) => {
     if (!query.trim()) return; // prevents call if search bar is empty
 
 
-    // 🛠️ TEMPORARY MOCK DATA TO AVOID ADDITIONAL API CALLS
+    /* TEMPORARY MOCK DATA TO AVOID ADDITIONAL API CALLS
     const mockData = {
       location: { name: "London", localtime: "2026-06-22 21:30"},
       current: { temp_c: 16, feelslike_c: 18, humidity: 85, wind_kph: 12, uv: 2, precip_mm: 0.4, condition: { text: "cloudy", icon: "//cdn.weatherapi.com/weather/64x64/day/116.png", code: 1000} },
@@ -68,42 +90,63 @@ const Weather = ({ weatherData, setWeatherData }) => {
     
     setWeatherData(mockData);
     return;
-  
-
-    /*
-    try {
-      const url = `https://api.weatherapi.com/v1/current.json?key=${import.meta.env.VITE_APP_ID}&q=${query}`;
-      const response = await fetch(url);
-      
-      if (!response.ok) {
-        throw new Error('City not found.');
-      }
-
-      const data = await response.json();
-      setWeatherData(data); // Store the data in state
-      console.log(data);
-
-    } catch (error) {
-      console.error("Error fetching weather data:", error);
-      alert(error.message);
-    }
     */
-  }
+    
+    
+    try {
+        const url = `https://api.weatherapi.com/v1/forecast.json?key=${import.meta.env.VITE_APP_ID}&q=${query}&days=7`;
+        const response = await fetch(url);
+        
+        if (!response.ok) {
+          throw new Error('City not found.');
+        }
+
+        const data = await response.json();
+        setWeatherData(data); 
+        console.log(data);
+
+      } catch (error) {
+        console.error("Error fetching weather data:", error);
+        alert(error.message);
+      }
+    };
+        
   
 
   
 
   return (
+    
     <section className='weather'>
-        <div className='search-bar'>
-            <input 
-              type='text' 
-              placeholder='Search...' 
-              value={city}
-              onChange={(e) => setCity(e.target.value)}
-              onKeyDown={(e) => e.key === 'Enter' && search()} // search on Enter key
-            />
-            <img src={search_icon} alt='search' onClick={search} style={{ cursor: 'pointer' }} />
+        <div className='search-container'>
+          <div className='search-bar'>
+              <input 
+                type='text' 
+                placeholder='Search areas...' 
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+                onKeyDown={(e) => e.key === 'Enter' && search()} // search on Enter key
+              />
+              <img src={search_icon} alt='search' onClick={search} style={{ cursor: 'pointer' }} />
+          </div>
+
+          {suggestions.length > 0 && (
+            <ul className="suggestions-list">
+              {suggestions.map((item) => (
+                <li 
+                  key={item.id} 
+                  onClick={() => {
+                    setCity(item.name);   // 1. Fills the search bar text with the city name
+                    search(item.name);    // 2. Automatically launches the 7-day forecast search
+                    setSuggestions([]);   // 3. Empties the array to instantly close the box
+                  }}
+                >
+                  {item.name}, <span className="country-tint">{item.country}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+
         </div>
 
         {weatherData ? (
@@ -178,10 +221,17 @@ const Weather = ({ weatherData, setWeatherData }) => {
 
           </div>
 
+          {/* Forecast: Shows the weather forecast for the next 7 days. */}
+            <Forecast 
+                        weatherData={weatherData} 
+                        allIcons={allIcons} 
+                        clear_icon={clear_icon} 
+            />
+
         </>
       ) : (
         /* This renders safely on initial load while weatherData is still null */
-        <p className="search-prompt">Search for a city to see the weather!</p>
+        <p className="search-prompt">Search for a city to see its weather data!</p>
       )}
 
         

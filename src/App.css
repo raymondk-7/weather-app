@@ -1,10 +1,53 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
 
-.appfooter {
+.app {
     font-family: Quicksand;
+}
+
+.navcontainer {
+    display: flex;
+    background-color:#242424E0;
+    align-items: center;
+    z-index: 1;
+    position: sticky;
+    top: 0;
+    justify-content: space-between;
+    max-height: 4em;
+}
+
+header {
+    padding: 1rem;
+    font-size: 1.5em;
+    font-weight: 700;
+    opacity: 1;
+    color: white;
+}
+
+.navcontainer ul {
+    display: flex;
+    align-items: center;
+    margin-right: 1em;
+}
+
+.navcontainer ul li {
+    list-style-type: none;
+    font-weight: 500;
+    font-size: 1.1em;
+    color: white;
+    margin: 0.5em;
+    display: inline;
+}
+
+header a, .navcontainer ul li a {
+    text-decoration: none;
+    color: white;
+}
+
+.appfooter {
     margin-top: 1em;
     padding: 0.5em;
-    background-color: #242424;
+    background-color: #242424D0;
+    
     color: white;
     display: flex;
     justify-content: center;

@@ -47,8 +47,8 @@ const Forecast = ({ weatherData, allIcons, clear_icon }) => {
 
 return (
     <>
-        <h2 class='forecast-title'>10-Day Forecast</h2>
-        <article className='forecast-carousel-wrapper'>  
+        <h2 class='forecast-title'>7-Day Forecast</h2>
+        <article className='forecast-carousel-wrapper' id='weather-forecast'>  
           <div className='carousel-window'
               ref={windowRef}
               onMouseDown={handleMouseDown}
