@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
 
 
 .weather {
@@ -14,8 +14,10 @@
     flex-direction: column;
     align-items: center;
     justify-self: center;
-    width: 90%;
+    width: 90vw;
 }
+
+
 
 /* Search bar container */
 
@@ -37,6 +39,7 @@
     color: white;
     font-weight: 600;
     font-size: 2em;
+    text-align: center;
 }
 
 
@@ -122,69 +125,140 @@
 }
 
 
-.weather-main {
-    width: 100%;
-    color: #ffffff;
-    display: flex;
-    justify-content: space-around;
-    overflow: hidden;
-    padding: 1rem 0;
 
-    opacity: 1;
-	animation-name: fadeInOpacity;
-	animation-iteration-count: 1;
-	animation-timing-function: ease-out both;
-	animation-duration: 1s;
+@media (min-width: 1024px) {
+    .weather-main {
+        width: 100%;
+        color: #ffffff;
+        display: flex;
+        justify-content: space-around;
+        overflow: hidden;
+        padding: 1rem 0;
+
+        opacity: 1;
+        animation-name: fadeInOpacity;
+        animation-iteration-count: 1;
+        animation-timing-function: ease-out both;
+        animation-duration: 1s;
+    }
+
+    .left-header {
+        display: flex;
+        align-items: center; 
+        gap: 1rem;           
+    }
+
+    .left-header .temp-condition {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        word-break: break-word; /* Allows long strings without spaces to break cleanly */
+        white-space: normal;
+        max-width: 50%; /* prevents overflow into the next header */
+    }
+
+    .temperature, .feelsLike-temp {
+        font-size: 4em;
+        font-weight: 500;
+    }
+
+    .weather-icon {
+        width: 12em;
+    }
+
+    .condition-text, .feelsLike {
+        font-size: 2em;
+    }
+
+    .feelsLike-icon {
+        width: 6em;
+        margin: 2em;
+    }
+
+
+    .right-header {
+        display: flex;
+        align-items: center;
+        flex-direction: row-reverse;
+        gap: 1rem;
+    }
+
+    .right-header .feelsLikeWrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        word-break: break-word; /* Allows long strings without spaces to break */
+        white-space: normal;
+        max-width: 50%; /* prevents overflow into the next header */
+    }
 }
 
-.left-header {
-    display: flex;
-    align-items: center; 
-    gap: 1rem;           
-}
+@media (max-width: 1024px) {
+    .weather-main {
+        width: 100%;
+        color: #ffffff;
+        display: flex;
+        justify-content: space-around;
+        overflow: hidden;
+        padding: 1rem 0;
+        gap: 1rem; 
 
-.left-header .temp-condition {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    word-break: break-word; /* Allows long strings without spaces to break cleanly */
-    white-space: normal;
-    max-width: 50%; /* prevents overflow into the next header */
-}
+        opacity: 1;
+        animation-name: fadeInOpacity;
+        animation-iteration-count: 1;
+        animation-timing-function: ease-out both;
+        animation-duration: 1s;
+    }
 
-.temperature, .feelsLike-temp {
-    font-size: 4em;
-    font-weight: 500;
-}
+    .left-header {
+        display: flex;
+        align-items: center;           
+    }
 
-.weather-icon {
-    width: 12em;
-}
+    .left-header .temp-condition {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        word-break: break-word; /* Allows long strings without spaces to break cleanly */
+        white-space: nowrap;
+        max-width: 50%; /* prevents overflow into the next header */
+    }
 
-.condition-text, .feelsLike {
-    font-size: 2em;
-}
+    .temperature, .feelsLike-temp {
+        font-size: 2em;
+        font-weight: 500;
+        white-space: nowrap;
+    }
 
-.feelsLike-icon {
-    width: 6em;
-    margin: 2em;
-}
+    .weather-icon {
+        width: 10em;
+        margin: 1rem;
+    }
+
+    .condition-text, .feelsLike {
+        font-size: 1.5em;
+    }
+
+    .feelsLike-icon {
+        width: 6em;
+        margin: 1em;
+    }
 
 
-.right-header {
-    display: flex;
-    align-items: center;
-    flex-direction: row-reverse;
-    gap: 1rem;
-}
+    .right-header {
+        display: flex;
+        align-items: center;
+        flex-direction: row-reverse;
+    }
 
-.right-header .feelsLikeWrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    word-break: break-word; /* Allows long strings without spaces to break */
-    white-space: normal;
-    max-width: 50%; /* prevents overflow into the next header */
+    .right-header .feelsLikeWrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        word-break: break-word; /* Allows long strings without spaces to break */
+        white-space: nowrap;
+        max-width: 50%; /* prevents overflow into the next header */
+    }
 }
 
 /* BOTTOM ROW */
@@ -195,14 +269,15 @@
     color: #ffffff;
     display: flex;
     justify-content: space-between;
-    overflow: hidden;
+    overflow: scroll;
 }
 
 .weather-data .col {
     display: flex;
     align-items: flex-start;
-    gap: 0.5em;
+    margin-inline: 0.5em;
     font-size: 22px;
+    white-space: nowrap;
 }
 
 .weather-data .col span {
@@ -212,6 +287,7 @@
 
 .weather-data .col img {
     width: 2.5em;
+    margin-inline: 0.5em;
 }
 
 /* WeatherAPI.com Link */

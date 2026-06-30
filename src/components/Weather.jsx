@@ -40,9 +40,10 @@ const Weather = ({ weatherData, setWeatherData }) => {
       }
     };
 
+    // Prevents excessive API calls!
     const delayDebounce = setTimeout(() => {
       fetchSuggestions();
-    }, 300);
+    }, 500);
 
     return () => clearTimeout(delayDebounce);
   }, [city]);

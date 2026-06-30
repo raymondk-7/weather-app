@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
 
 
 /* Full wrapper */
@@ -71,6 +71,19 @@
 .forecast-card img {
     width: 12rem;
 }
+
+@media (min-width: 1024px) {
+    .forecast-card img {
+        width: 12rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .forecast-card img {
+        width: 8rem;
+    }
+}
+
 
 .max-temp, .min-temp {
     margin-inline: 0.5rem;
