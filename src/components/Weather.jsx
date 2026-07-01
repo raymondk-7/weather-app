@@ -12,7 +12,7 @@ import uv_index from '../assets/uvindex.svg'
 import feels_like from '../assets/feelslike.svg'
 import rain_fall from '../assets/rainfall.svg'
 
-import allIcons from './weatherIcons.js'
+import allIcons from './WeatherIcons.js'
 import clear_icon from '../assets/clear.png'
 import Forecast from './Forecast.jsx';
 
@@ -21,6 +21,7 @@ const Weather = ({ weatherData, setWeatherData }) => {
   
   const [city, setCity] = useState('');
   const [suggestions, setSuggestions] = useState([]); // Stores autocomplete matches
+  const [selectedDayIndex, setSelectedDayIndex] = useState(0); // Sets data to first day in the forecast
 
   useEffect(() => {
     const fetchSuggestions = async () => {
