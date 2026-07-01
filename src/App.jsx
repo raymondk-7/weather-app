@@ -20,6 +20,7 @@ const App = () => {
   // Looks up the background image based on the top-level state
   const currentBgImage = weatherData ? (allBackgrounds[weatherData.current.condition.code] || 'linear-gradient(to bottom, #4ea8de, #56cfe1)') : 'linear-gradient(to bottom, #4ea8de, #56cfe1)';
 
+  // ul elements hidden until weather data is returned
   return (
     <main className='app'
     style={{ 
@@ -32,10 +33,12 @@ const App = () => {
 
       <nav className='navcontainer'>
         <header><a href='#'>Weather and Forecast</a></header>
-        <ul>
-          <li><a href='#'>Weather</a></li>
-          <li><a href='#weather-forecast'>Forecast</a></li>
-        </ul>
+        {weatherData && (
+          <ul>
+            <li><a href='#'>Weather</a></li>
+            <li><a href='#weather-forecast'>Forecast</a></li>
+          </ul>
+      )}
       </nav>
 
       {/* Weather: Shows the weather data from the selected day. (Contains Forecast)*/}

@@ -156,7 +156,7 @@ const Weather = ({ weatherData, setWeatherData }) => {
 
           <div className='overview'>
             <p className='weekday'>{getDayOfWeek()}</p>
-            <p className='location'>{weatherData.location.name}</p>
+            <p className='location'>{weatherData.location.name}, <span className="country-name">{weatherData.location.country}</span></p>
           </div>
 
           <div className='weather-main'>

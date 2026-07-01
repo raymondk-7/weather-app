@@ -15,6 +15,12 @@
     align-items: center;
     justify-self: center;
     width: 90vw;
+
+    opacity: 1;
+    animation-name: fadeInOpacity;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out both;
+    animation-duration: 1s;
 }
 
 

@@ -4,6 +4,19 @@
     font-family: Quicksand;
 }
 
+@keyframes fadeInOpacity {
+	0% {
+		opacity: 0;
+        transform: translateY(25px);
+	}
+	100% {
+		opacity: 1;
+        transform: translateY(0px);
+	}
+}
+
+
+
 .navcontainer {
     display: flex;
     background-color:#242424E0;
