@@ -233,7 +233,7 @@ const Weather = ({ weatherData, setWeatherData }) => {
         </>
       ) : (
         /* This renders safely on initial load while weatherData is still null */
-        <p className="search-prompt">Search for a city to see its weather data!</p>
+        <p className="search-prompt">Search for a city to see its weather dataaaaaaaaa!</p>
       )}
 
         
