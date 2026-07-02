@@ -8,13 +8,13 @@
     padding: 2rem;
     padding-bottom: 0;
     border-radius: 0.6rem;
-
-    background: #242424C0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-self: center;
-    width: 90vw;
+
+    height: auto;
+    width: 90%;
+    background: #242424C0;
 
     opacity: 1;
     animation-name: fadeInOpacity;
@@ -42,9 +42,10 @@
 
 .search-prompt {
     margin: 1em;
+    flex: 1;
     color: white;
     font-weight: 600;
-    font-size: 2em;
+    font-size: 3rem;
     text-align: center;
 }
 
@@ -106,13 +107,13 @@
 }
 
 .weekday {
-    font-size: 3em;
+    font-size: 3rem;
     font-weight: 600;
     color: #ffffff;
 }
 
 .location {
-    font-size: 2em;
+    font-size: 2rem;
 }
 
 
@@ -140,6 +141,7 @@
         justify-content: space-around;
         overflow: hidden;
         padding: 1rem 0;
+        
 
         opacity: 1;
         animation-name: fadeInOpacity;
@@ -164,7 +166,7 @@
     }
 
     .temperature, .feelsLike-temp {
-        font-size: 4em;
+        font-size: 4rem;
         font-weight: 500;
     }
 
@@ -173,7 +175,7 @@
     }
 
     .condition-text, .feelsLike {
-        font-size: 2em;
+        font-size: 2rem;
     }
 
     .feelsLike-icon {
@@ -231,7 +233,7 @@
     }
 
     .temperature, .feelsLike-temp {
-        font-size: 2em;
+        font-size: 2rem;
         font-weight: 500;
         white-space: nowrap;
     }
@@ -242,7 +244,7 @@
     }
 
     .condition-text, .feelsLike {
-        font-size: 1.5em;
+        font-size: 1.5rem;
     }
 
     .feelsLike-icon {
@@ -282,13 +284,13 @@
     display: flex;
     align-items: flex-start;
     margin-inline: 0.5em;
-    font-size: 22px;
+    font-size: 1.5rem;
     white-space: nowrap;
 }
 
 .weather-data .col span {
     display: block;
-    font-size: 16px;
+    font-size: 1rem;
 }
 
 .weather-data .col img {

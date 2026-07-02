@@ -138,9 +138,9 @@ const Weather = ({ weatherData, setWeatherData }) => {
                 <li 
                   key={item.id} 
                   onClick={() => {
-                    setCity(item.name);   // 1. Fills the search bar text with the city name
-                    search(item.name);    // 2. Automatically launches the 7-day forecast search
-                    setSuggestions([]);   // 3. Empties the array to instantly close the box
+                    setCity(item.name);   // Fills the search bar text with the city name
+                    search(`${item.name}, ${item.country}`);    // Automatically launches the 7-day forecast search
+                    setSuggestions([]);   // Empties the array to instantly close the box
                   }}
                 >
                   {item.name}, <span className="country-tint">{item.country}</span>
