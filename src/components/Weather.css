@@ -114,6 +114,9 @@
 
 .location {
     font-size: 2rem;
+    display: flex;
+    gap: 0.35rem;
+    justify-self: center;
 }
 
 
@@ -207,7 +210,7 @@
         color: #ffffff;
         display: flex;
         justify-content: space-around;
-        overflow: hidden;
+        overflow: scroll;
         padding: 1rem 0;
         gap: 1rem; 
 
