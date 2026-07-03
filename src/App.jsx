@@ -35,7 +35,6 @@ const App = () => {
         <header><a href='#'>Weather and Forecast</a></header>
         {weatherData && (
           <ul>
-            <li><a href='#'>Weather</a></li>
             <li><a href='#weather-forecast'>Forecast</a></li>
           </ul>
       )}

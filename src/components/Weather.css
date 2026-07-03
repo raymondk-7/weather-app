@@ -209,10 +209,9 @@
         width: 100%;
         color: #ffffff;
         display: flex;
-        justify-content: space-around;
-        overflow: scroll;
-        padding: 1rem 0;
-        gap: 1rem; 
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem 0; 
 
         opacity: 1;
         animation-name: fadeInOpacity;
@@ -229,10 +228,8 @@
     .left-header .temp-condition {
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
         word-break: break-word; /* Allows long strings without spaces to break cleanly */
         white-space: nowrap;
-        max-width: 50%; /* prevents overflow into the next header */
     }
 
     .temperature, .feelsLike-temp {
@@ -243,7 +240,6 @@
 
     .weather-icon {
         width: 10em;
-        margin: 1rem;
     }
 
     .condition-text, .feelsLike {
@@ -259,16 +255,13 @@
     .right-header {
         display: flex;
         align-items: center;
-        flex-direction: row-reverse;
     }
 
     .right-header .feelsLikeWrapper {
         display: flex;
         flex-direction: column;
-        align-items: flex-end;
         word-break: break-word; /* Allows long strings without spaces to break */
         white-space: nowrap;
-        max-width: 50%; /* prevents overflow into the next header */
     }
 }
 
@@ -277,6 +270,7 @@
 .weather-data {
     width: 100%;
     margin-top: 40px;
+    padding-block: 1rem;
     color: #ffffff;
     display: flex;
     justify-content: space-between;
