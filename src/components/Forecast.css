@@ -17,7 +17,6 @@
 
 .forecast-title {
     font-family: Quicksand;
-    justify-self: center;
     background-color: #303030;
     color: white;
 
@@ -45,6 +44,7 @@
     width: 100%;
     max-width: 100%;
     color: white;
+    justify-content: center;
 }
 
 .carousel-window::-webkit-scrollbar {
