@@ -2,7 +2,7 @@ import React, {useRef} from 'react';
 import './Forecast.css';
 
 
-const Forecast = ({ weatherData, allIcons, clear_icon }) => {
+const Forecast = ({ weatherData, allIcons, clear_icon, selectedDayIndex, setSelectedDayIndex }) => {
 
 
   const windowRef = useRef(null);
@@ -10,25 +10,26 @@ const Forecast = ({ weatherData, allIcons, clear_icon }) => {
 
 
   // Track dragging state parameters variables
-  let isDown = false;
-  let startX;
-  let scrollLeft;
+  let isDown = useRef(false);
+  let startX = useRef(0);
+  const scrollLeft = useRef(0);
+  const hasMoved = useRef(false);
 
   // If data hasn't loaded yet, return nothing to prevent crashes
   if (!weatherData || !weatherData.forecast) return null;
 
   // Mouse held down event handling
   const handleMouseDown = (e) => {
-    isDown = true;
+    isDown.current = true;
+    hasMoved.current = false;
+    startX.current = e.pageX - windowRef.current.offsetLeft;
+    scrollLeft.current = windowRef.current.scrollLeft;
     windowRef.current.style.cursor = 'grabbing';
-    // Calculate initial click coordinate minus container positioning offsets
-    startX = e.pageX - windowRef.current.offsetLeft;
-    scrollLeft = windowRef.current.scrollLeft;
   };
 
   // Mouse Release/Leave events
   const handleMouseUpOrLeave = () => {
-    isDown = false;
+    isDown.current = false;
     if (windowRef.current) {
       windowRef.current.style.cursor = 'grab';
     }
@@ -36,12 +37,14 @@ const Forecast = ({ weatherData, allIcons, clear_icon }) => {
 
   // Handles how the carousel moves during mouse dragging
   const handleMouseMove = (e) => {
-    if (!isDown) return; // Exit if user isn't holding click
-    e.preventDefault();  // Stop browser text selection highlights while dragging
+    if (!isDown.current) return;
     
     const x = e.pageX - windowRef.current.offsetLeft;
-    const walk = (x - startX) * 1.5; // Multiply by 1.5 to adjust drag speed sensitivity
+    const walk = (x - startX.current) * 1.5; // Multiply by 1.5 to adjust drag speed sensitivity
     windowRef.current.scrollLeft = scrollLeft - walk;
+
+    e.preventDefault();
+    windowRef.current.scrollLeft = scrollLeft.current - walk;
   };
   
 
@@ -60,7 +63,13 @@ return (
                 
               {weatherData.forecast.forecastday.map((dayItem, index) => (
                   
-                  <div key={dayItem.date} className='forecast-card'>
+                  <div 
+                    key={dayItem.date} 
+                    className={`forecast-card ${selectedDayIndex === index ? 'active' : ''}`}
+                    // Where I left off. fix changing the days
+                    onClick={() => {console.log("Card clicked", index); setSelectedDayIndex(index)}}
+                    style={{ cursor: 'pointer' }}
+                  >
                   <p className='card-day'>
                       {index === 0 ? 'Today' : new Date(dayItem.date).toLocaleDateString('en-US', { weekday: 'short' })}
                   </p>

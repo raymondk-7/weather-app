@@ -32,7 +32,15 @@ const App = () => {
       }}>
 
       <nav className='navcontainer'>
-        <header><a href='#'>Weather and Forecast</a></header>
+        <header>
+          <a href='#' onClick={(e) => {
+            e.preventDefault(); // Prevents the URL hash jump/page refresh
+            setWeatherData(null);
+            }}
+          >
+            Weather and Forecast
+          </a>
+        </header>
         {weatherData && (
           <ul>
             <li><a href='#weather-forecast'>Forecast</a></li>

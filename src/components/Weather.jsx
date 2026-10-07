@@ -23,6 +23,38 @@ const Weather = ({ weatherData, setWeatherData }) => {
   const [suggestions, setSuggestions] = useState([]); // Stores autocomplete matches
   const [selectedDayIndex, setSelectedDayIndex] = useState(0); // Sets data to first day in the forecast
 
+  const isToday = selectedDayIndex === 0;
+  const currentDay = weatherData?.forecast?.forecastday?.[selectedDayIndex];
+
+  const displayTemp = isToday 
+    ? Math.floor(weatherData?.current?.temp_c) 
+    : Math.floor(currentDay?.day?.avgtemp_c);
+
+  const displayCondition = isToday
+    ? weatherData?.current?.condition
+    : currentDay?.day?.condition;
+
+  const displayFeelsLike = isToday
+    ? Math.floor(weatherData?.current?.feelslike_c)
+    : Math.floor(currentDay?.day?.avgtemp_c);
+
+  const displayHumidity = isToday
+    ? weatherData?.current?.humidity
+    : currentDay?.day?.avghumidity;
+
+  const displayUv = isToday
+    ? weatherData?.current?.uv
+    : currentDay?.day?.uv;
+
+  const displayWind = isToday
+    ? weatherData?.current?.wind_kph
+    : currentDay?.day?.maxwind_kph;
+
+  const displayRain = isToday
+    ? weatherData?.current?.precip_mm
+    : currentDay?.day?.totalprecip_mm;
+
+  
   useEffect(() => {
     const fetchSuggestions = async () => {
       if (city.trim().length < 2) {
@@ -35,6 +67,7 @@ const Weather = ({ weatherData, setWeatherData }) => {
         if (response.ok) {
           const data = await response.json();
           setSuggestions(data);
+          setSelectedDayIndex(0);
         }
       } catch (error) {
         console.error("Autocomplete error:", error);
@@ -53,9 +86,13 @@ const Weather = ({ weatherData, setWeatherData }) => {
   // Setting the weekday...
   const getDayOfWeek = () => {
     if (!weatherData || !weatherData.location) return "";
-    const dateOnly = weatherData.location.localtime.split(" ")[0];
-    const date = new Date(dateOnly);
-    return date.toLocaleDateString('en-US', { weekday: 'long' });
+
+    const dateStr = !isToday && currentDay 
+      ? currentDay.date 
+      : weatherData.location.localtime.split(" ")[0];
+
+    const date = new Date(dateStr + "T00:00:00");
+    return date.toLocaleDateString('en-UK', { weekday: 'long' });
   };
   
 
@@ -96,6 +133,8 @@ const Weather = ({ weatherData, setWeatherData }) => {
     
     
     try {
+
+        // Will return 3: Free API version
         const url = `https://api.weatherapi.com/v1/forecast.json?key=${import.meta.env.VITE_APP_ID}&q=${query}&days=7`;
         const response = await fetch(url);
         
@@ -162,13 +201,13 @@ const Weather = ({ weatherData, setWeatherData }) => {
           <div className='weather-main'>
 
             <div className='left-header'>
-              <img src={allIcons[weatherData.current.condition.code] || clear_icon} 
+              <img src={allIcons[displayCondition?.code] || clear_icon} 
                 alt='weather condition' 
                 className='weather-icon'
               />
               <div className='temp-condition'>
-                <p className='temperature'>{Math.floor(weatherData.current.temp_c)}°C</p>
-                <p className='condition-text'>{weatherData.current.condition.text}</p>
+                <p className='temperature'>{displayTemp}°C</p>
+                <p className='condition-text'>{displayCondition?.text}</p>
               </div>
             </div>
 
@@ -181,7 +220,7 @@ const Weather = ({ weatherData, setWeatherData }) => {
 
               <div className="feelsLikeWrapper">
                 <p className='feelsLike'>Feels like</p>
-                <p className='feelsLike-temp'>{Math.floor(weatherData.current.feelslike_c)}°C</p>
+                <p className='feelsLike-temp'>{displayFeelsLike}°C</p>
               </div>
             </div>
 
@@ -192,7 +231,7 @@ const Weather = ({ weatherData, setWeatherData }) => {
             <div className="col">
               <img src={humidity_icon} alt="" />
               <div>
-                <p>{weatherData.current.humidity}%</p>
+                <p>{displayHumidity}%</p>
                 <span>Humidity</span>
               </div>
             </div>
@@ -200,7 +239,7 @@ const Weather = ({ weatherData, setWeatherData }) => {
             <div className="col">
               <img src={uv_index} alt="" />
               <div>
-                <p>{weatherData.current.uv}</p>
+                <p>{displayUv}</p>
                 <span>UV Index</span>
               </div>
             </div>
@@ -208,7 +247,7 @@ const Weather = ({ weatherData, setWeatherData }) => {
             <div className="col">
               <img src={wind_icon} alt="" />
               <div>
-                <p>{weatherData.current.wind_kph} KM/H</p>
+                <p>{displayWind} KM/H</p>
                 <span>Wind Speed</span>
               </div>
             </div>
@@ -216,7 +255,7 @@ const Weather = ({ weatherData, setWeatherData }) => {
             <div className="col">
               <img src={rain_fall} alt="" />
               <div>
-                <p>{weatherData.current.precip_mm} mm</p>
+                <p>{displayRain} mm</p>
                 <span>Rainfall</span>
               </div>
             </div>  
@@ -228,6 +267,8 @@ const Weather = ({ weatherData, setWeatherData }) => {
                         weatherData={weatherData} 
                         allIcons={allIcons} 
                         clear_icon={clear_icon} 
+                        selectedDayIndex={selectedDayIndex}
+                        setSelectedDayIndex={setSelectedDayIndex}
             />
 
         </>
