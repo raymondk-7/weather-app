@@ -29,22 +29,17 @@
 
 .carousel-window {
     overflow-x: auto;
-    scroll-behavior: smooth;
-
-    -ms-overflow-style: none; /* For IE/MS Edge */
-    scrollbar-width: none; /* For Firefox */
-
-    user-select: none;         /* Standard syntax */
-    -webkit-user-select: none; /* Safari */
-    -moz-user-select: none;    /* Firefox */
-    -ms-user-select: none;     /* IE/Edge */
     
     display: flex;
 
     width: 100%;
     max-width: 100%;
     color: white;
-    justify-content: center;
+    justify-content: flex-start;
+
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    
 }
 
 .carousel-window::-webkit-scrollbar {
@@ -54,6 +49,21 @@
 .carousel-track {
     display: flex;
     flex-direction: row;
+
+    scroll-behavior: smooth;
+
+    user-select: none;         /* Standard syntax */
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none;    /* Firefox */
+    -ms-user-select: none;     /* IE/Edge */
+}
+
+.carousel-track:active {
+  cursor: grabbing;
+}
+
+.carousel-track:not(:active) {
+  cursor: default;
 }
 
 

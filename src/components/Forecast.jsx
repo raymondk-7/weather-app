@@ -55,9 +55,9 @@ return (
               onMouseLeave={handleMouseUpOrLeave}
               onMouseUp={handleMouseUpOrLeave}
               onMouseMove={handleMouseMove}
-              style={{ cursor: 'grab' }}
           >
               <div className='carousel-track'>
+                
               {weatherData.forecast.forecastday.map((dayItem, index) => (
                   
                   <div key={dayItem.date} className='forecast-card'>
@@ -75,6 +75,7 @@ return (
                       <span className='min-temp'>{Math.floor(dayItem.day.mintemp_c)}°</span>
                   </div>
                   </div>
+                  
 
               ))}
               </div>
